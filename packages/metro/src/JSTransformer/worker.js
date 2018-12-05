@@ -236,7 +236,11 @@ class JsTransformer {
     }
 
     if (!options.dev) {
-      plugins.push([constantFoldingPlugin, opts]);
+      if (filename === "index.js")
+        console.log("======= CUSTOM PATCH @chpill ======== IGNORING CONSTANT FOLDING FOR", filename);
+      else
+        plugins.push([constantFoldingPlugin, opts]);
+
       plugins.push([inlinePlugin, opts]);
     }
 
